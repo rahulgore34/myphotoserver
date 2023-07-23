@@ -28,7 +28,7 @@ exports.signInPhotoUsers = async(req, res) => {
     try {
       const userFound = await PhotoOwnersUsesModel.findByCredentials(username, password);
     //  Generate token.
-      const token = jwt.sign({username: userFound.username}, secretKey, {expiresIn: '1m'});
+      const token = jwt.sign({username: userFound.username}, secretKey);
       res.send({
         status: 200,
         user: userFound.username,
