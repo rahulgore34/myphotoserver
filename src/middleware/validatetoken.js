@@ -10,7 +10,7 @@ exports.validateToken = async (req, res, next) => {
             message: 'No token provided'
         });
     }
-    console.log(token);
+  
     const t = token.split(' ')[1];
     jwt.verify(t, secretKey, (err, decoded) => {
         if (err) {
