@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const LoanModel = require('../db/loans-model');
 const {validateToken} = require("../middleware/validatetoken");
+const { getTest, adddailyexpense,getExpense, editdailyexpense, deletedailyexpense } = require('../controllers/dailyempensetracker-ctrl');
 
 router.get('/', (req, res, next) => {
     res.send("Expnsese")
@@ -40,4 +41,12 @@ router.get('/getloaninfo', validateToken, async(req, res, next) => {
      res.status(statusCode).json({ error: errorMessage });
     }
  })
+
+
+//  expense tracker
+router.get("/myexpenses", getTest);
+router.post("/myexpenses", adddailyexpense);
+router.get("/myexpenses/:expenseId", getExpense);
+router.put("/myexpenses/:expenseId", editdailyexpense);
+router.delete("/myexpenses/:expenseId", deletedailyexpense);
 module.exports = router;
